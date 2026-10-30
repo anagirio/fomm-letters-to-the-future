@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FOMM · Letters to the Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --void:#070612; --violet:#9A86FF; --gold:#F0B429; --cyan:#5BE1E6; --text:#ECEAFB; --muted:#9A96C4; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--text); font-family: "Manrope", system-ui, sans-serif;
+    background-color: var(--void);
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, #fff8, transparent), radial-gradient(1px 1px at 30% 70%, #fff6, transparent),
+      radial-gradient(1.5px 1.5px at 55% 15%, #fffa, transparent), radial-gradient(1px 1px at 75% 45%, #fff7, transparent),
+      radial-gradient(1px 1px at 90% 80%, #fff6, transparent), radial-gradient(ellipse at 50% -20%, #2a2170 0%, transparent 60%);
+    background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 100% 100%;
+    background-attachment: fixed;
+  }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 16px; }
+  .bar b { font-family: "Space Grotesk", sans-serif; }
+  .bar span { color: var(--muted); font-size: .9rem; }
+  .bar a { color: var(--cyan); }
+  iframe { display: block; width: 100%; height: calc(100vh - 52px); border: 0; }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <b>FOMM · letters to the future</b>
+    <span>⏳ If it is asleep, the app takes about a minute to wake up. ·
+      <a href="https://fomm-letters-to-the-future.onrender.com" target="_blank" rel="noopener">open full screen</a> ·
+      <a href="https://github.com/anagirio/fomm-letters-to-the-future" target="_blank" rel="noopener">code</a></span>
+  </div>
+  <iframe src="https://fomm-letters-to-the-future.onrender.com" title="FOMM · Letters to the Future" allow="clipboard-write"></iframe>
+</body>
+</html>

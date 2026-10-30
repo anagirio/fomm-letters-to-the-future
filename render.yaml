@@ -1,0 +1,17 @@
+# How Render runs the Beam demo (Blueprint). Free plan: it sleeps when idle and wakes in about a minute.
+# Render dashboard: New → Blueprint → pick the repo anagirio/fomm-letters-to-the-future.
+services:
+  - type: web
+    name: fomm-letters-to-the-future
+    runtime: python
+    plan: free
+    region: virginia
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: REFLECTION_API_KEY     # key from platform.reflection.ai, typed in the dashboard
+        sync: false
