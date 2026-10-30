@@ -1,0 +1,22 @@
+/* Earth + orbiting moon, copied from fomm-site.html */
+  .hero-orbWrap{display:grid; place-items:center; min-height:340px; position:relative;}
+  .capsule{position:relative; width:220px; height:220px; display:grid; place-items:center;}
+  /* terra + lua orbitando */
+  .capsule .halo{position:absolute; inset:-34px; border-radius:50%; z-index:0;
+    background:radial-gradient(circle, rgba(110,170,255,.26) 0%, rgba(90,140,255,.09) 45%, transparent 70%);
+    animation:breathe 7s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{opacity:.75; transform:scale(.97)} 50%{opacity:1; transform:scale(1.04)}}
+  .capsule .earth{position:relative; z-index:2; width:170px; height:170px; display:block;
+    filter:drop-shadow(0 0 22px rgba(100,170,255,.45)) drop-shadow(0 0 70px rgba(80,140,255,.2));}
+  .earth .land{animation:spinEarth 60s linear infinite;}
+  @keyframes spinEarth{from{transform:translateX(-30px)} to{transform:translateX(-430px)}}
+  .capsule .moon{position:absolute; top:50%; left:50%; width:30px; height:30px; margin:-15px; border-radius:50%;
+    background:
+      radial-gradient(circle at 30% 34%, rgba(150,138,118,.55) 0 9%, transparent 10%),
+      radial-gradient(circle at 55% 60%, rgba(150,138,118,.50) 0 13%, transparent 14%),
+      radial-gradient(circle at 70% 28%, rgba(150,138,118,.40) 0 7%, transparent 8%),
+      radial-gradient(circle at 36% 30%, #fffdf6, #f3ead6 40%, #d9cdb4 75%, #b8aa8e 100%);
+    box-shadow:0 0 14px rgba(255,236,190,.4), inset -5px -6px 10px rgba(60,48,30,.5), inset 2px 2px 6px rgba(255,255,255,.6);
+    animation:moonOrbit 16s linear infinite;}
+  @keyframes moonOrbit{0.00%{transform:translate(145.0px,-12.0px) scale(1.00); z-index:1} 2.78%{transform:translate(142.8px,-5.9px) scale(1.03); z-index:3} 5.56%{transform:translate(136.3px,0.4px) scale(1.06); z-index:3} 8.33%{transform:translate(125.6px,6.6px) scale(1.09); z-index:3} 11.11%{transform:translate(111.1px,12.7px) scale(1.12); z-index:3} 13.89%{transform:translate(93.2px,18.3px) scale(1.14); z-index:3} 16.67%{transform:translate(72.5px,23.4px) scale(1.16); z-index:3} 19.44%{transform:translate(49.6px,27.8px) scale(1.17); z-index:3} 22.22%{transform:translate(25.2px,31.4px) scale(1.18); z-index:3} 25.00%{transform:translate(0.0px,34.0px) scale(1.18); z-index:3} 27.78%{transform:translate(-25.2px,35.6px) scale(1.18); z-index:3} 30.56%{transform:translate(-49.6px,36.1px) scale(1.17); z-index:3} 33.33%{transform:translate(-72.5px,35.4px) scale(1.16); z-index:3} 36.11%{transform:translate(-93.2px,33.8px) scale(1.14); z-index:3} 38.89%{transform:translate(-111.1px,31.0px) scale(1.12); z-index:3} 41.67%{transform:translate(-125.6px,27.4px) scale(1.09); z-index:3} 44.44%{transform:translate(-136.3px,22.9px) scale(1.06); z-index:3} 47.22%{transform:translate(-142.8px,17.7px) scale(1.03); z-index:3} 50.00%{transform:translate(-145.0px,12.0px) scale(1.00); z-index:3} 52.78%{transform:translate(-142.8px,5.9px) scale(0.97); z-index:1} 55.56%{transform:translate(-136.3px,-0.4px) scale(0.94); z-index:1} 58.33%{transform:translate(-125.6px,-6.6px) scale(0.91); z-index:1} 61.11%{transform:translate(-111.1px,-12.7px) scale(0.88); z-index:1} 63.89%{transform:translate(-93.2px,-18.3px) scale(0.86); z-index:1} 66.67%{transform:translate(-72.5px,-23.4px) scale(0.84); z-index:1} 69.44%{transform:translate(-49.6px,-27.8px) scale(0.83); z-index:1} 72.22%{transform:translate(-25.2px,-31.4px) scale(0.82); z-index:1} 75.00%{transform:translate(-0.0px,-34.0px) scale(0.82); z-index:1} 77.78%{transform:translate(25.2px,-35.6px) scale(0.82); z-index:1} 80.56%{transform:translate(49.6px,-36.1px) scale(0.83); z-index:1} 83.33%{transform:translate(72.5px,-35.4px) scale(0.84); z-index:1} 86.11%{transform:translate(93.2px,-33.8px) scale(0.86); z-index:1} 88.89%{transform:translate(111.1px,-31.0px) scale(0.88); z-index:1} 91.67%{transform:translate(125.6px,-27.4px) scale(0.91); z-index:1} 94.44%{transform:translate(136.3px,-22.9px) scale(0.94); z-index:1} 97.22%{transform:translate(142.8px,-17.7px) scale(0.97); z-index:1} 100.00%{transform:translate(145.0px,-12.0px) scale(1.00); z-index:1}}
+  @media (prefers-reduced-motion: reduce){.earth .land,.capsule .moon,.capsule .halo{animation:none}}

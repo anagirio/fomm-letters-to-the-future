@@ -210,16 +210,21 @@ def gentle(text, written, context, request: gr.Request):
 
 # ---------- UI ----------
 
-CSS = (Path(__file__).parent / "style.css").read_text(encoding="utf-8")
+HERE = Path(__file__).parent
+CSS = (HERE / "style.css").read_text(encoding="utf-8") + (HERE / "earth.css").read_text(encoding="utf-8")
+EARTH_SVG = (HERE / "earth.svg.html").read_text(encoding="utf-8")  # same Earth as fomm-site.html
 FORCE_DARK = "() => { document.body.classList.add('dark'); }"
 
-with gr.Blocks(title="FOMM · Letters to the Future") as demo:
+with gr.Blocks(title="FOMM · fear of missing memories") as demo:
     sealed = gr.State([])
     life = gr.State([])
 
     gr.HTML(
-        '<div class="hero"><div class="earth"></div>'
-        '<h1>FOMM <span>· letters to the future</span></h1>'
+        EARTH_SVG
+        + '<div class="hero"><div class="hero-orbWrap"><div class="capsule"><div class="halo"></div>'
+        '<svg class="earth" role="img" aria-label="Earth"><use href="#earth"/></svg><div class="moon"></div>'
+        "</div></div>"
+        "<h1>FOMM</h1><div class=\"tagline\">fear of missing memories</div>"
         "<p>Time capsules that arrive on the day you choose. <b>Beam</b> helps you write them, "
         "reads a whole life of them at once, and makes sure they open gently.</p></div>"
     )
@@ -230,7 +235,7 @@ with gr.Blocks(title="FOMM · Letters to the Future") as demo:
         gr.Markdown("Beam interviews you, one question at a time, then writes the capsule **in your own words**.")
         chat = gr.Chatbot(value=[{"role": "assistant", "content": FIRST_QUESTION}], height=380, show_label=False)
         with gr.Row():
-            msg = gr.Textbox(placeholder="Type your answer…", show_label=False, scale=5, autofocus=True)
+            msg = gr.Textbox(placeholder="Type your answer…", show_label=False, scale=5)
             send = gr.Button("Send", variant="primary", scale=1)
         write_btn = gr.Button("✍️ Write my capsule")
         letter = gr.Textbox(label="Your capsule (edit freely)", lines=10)

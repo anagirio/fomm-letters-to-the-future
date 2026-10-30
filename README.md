@@ -1,5 +1,5 @@
 ---
-title: FOMM · Letters to the Future
+title: "FOMM · fear of missing memories"
 emoji: 💌
 colorFrom: indigo
 colorTo: purple
@@ -16,7 +16,7 @@ tags:
   - long-context
 ---
 
-# FOMM · Letters to the Future
+# FOMM · fear of missing memories
 
 **FOMM ("fear of missing memories")** is a time-capsule social network built in Brazil: you record a video,
 an audio or a letter, pick a date, and it is delivered to someone on that day, next month or in ten years.
