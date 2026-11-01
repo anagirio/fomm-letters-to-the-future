@@ -46,6 +46,8 @@ def friendly(err: Exception) -> str:
         return f"⏳ {err}"
     if isinstance(err, beam.EmptyAnswer):
         return "Beam thought for too long and ran out of room before answering. Please try again."
+    if type(err).__name__ == "LostInDates":
+        return "Beam got lost listing dates instead of writing. Please try again."
     return f"Beam could not answer right now ({type(err).__name__}). Please try again in a moment."
 
 
@@ -145,6 +147,29 @@ def load_life(choice, upload, sealed):
 LANGUAGES = ["Same as the capsules", "English", "Português"]
 
 
+# On a long life Beam sometimes stops writing and lists hundreds of dates in a row (seen in needle_test.py).
+DATE = r"\d{4}-\d{2}-\d{2}"
+DATE_RUN = re.compile(rf"\[?{DATE}\]?(?:(?:[\s,;]|and)*\[?{DATE}\]?){{3,}}")
+MAX_DATE_RUN = 30
+
+
+class LostInDates(Exception):
+    pass
+
+
+def tidy_dates(text):
+    """Keep at most three dates of every run of cited dates. Returns the text and the longest run."""
+    longest = 0
+
+    def cut(m):
+        nonlocal longest
+        dates = re.findall(DATE, m.group(0))
+        longest = max(longest, len(dates))
+        return ", ".join(f"[{d}]" for d in dates[:3]) + " …"
+
+    return DATE_RUN.sub(cut, text), longest
+
+
 def retrospective(capsules, language, request: gr.Request):
     if not capsules:
         yield "Load some capsules first."
@@ -166,16 +191,22 @@ def retrospective(capsules, language, request: gr.Request):
     # Measured in needle_test.py: on a ~480k-token life, medium effort sometimes thinks until the limit and
     # returns nothing; low effort answered every time, in less than half the time.
     long_life = len(body) > LONG_LIFE_CHARS
-    for attempt in range(2 if long_life else 1):
+    for attempt in range(2):
         try:
-            yield from beam.stream(msgs, session_id(request), max_tokens=3000, temperature=0.5,
+            for out in beam.stream(msgs, session_id(request), max_tokens=3000, temperature=0.5,
                                    effort="low" if long_life else "medium",
                                    reasoning=beam.REASONING_BUDGET * (2 if long_life else 1),
-                                   demo_text="## Threads that kept coming back\nThe sea [2014-12-31]...")
+                                   demo_text="## Threads that kept coming back\nThe sea [2014-12-31]..."):
+                out, longest = tidy_dates(out)
+                if longest > MAX_DATE_RUN:
+                    raise LostInDates()
+                yield out
             return
-        except beam.EmptyAnswer as err:
-            if attempt or not long_life:
+        except (beam.EmptyAnswer, LostInDates) as err:
+            if attempt:
                 yield friendly(err)
+            elif isinstance(err, LostInDates):
+                yield "_✨ Beam started listing dates instead of writing. Trying once more…_"
             else:
                 yield "_✨ Beam thought for too long. Trying once more…_"
         except Exception as err:

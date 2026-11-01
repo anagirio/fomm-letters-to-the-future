@@ -29,6 +29,12 @@ This Space is the part of FOMM that only a model like **Beam** makes possible. B
 | **2 · A life in capsules** | Reads **every capsule a person wrote over the years in a single pass** and writes a retrospective: recurring threads, what they let go of, and which promises to their future self they kept, broke or left open, all cited by date. | Beam's **1M-token context**. A heavy user of FOMM writes hundreds of thousands of tokens across a decade. No chunking or RAG: the whole life is in the context, so Beam can connect a promise from 2014 to the capsule that kept it in 2022. |
 | **3 · Gentle opening** | Before a capsule written years ago is delivered, Beam judges whether it could hurt now (a grandparent who died, an ex-partner) and writes a short note that prepares the recipient without spoiling it. Returns structured JSON. | Time capsules are uniquely risky: the author could not know the future. This is a real safety feature for a real product. |
 
+**72-second demo** (tab 2 reading the 480k-token life live, then tab 3):
+
+<video src="https://huggingface.co/spaces/anagirio/fomm-letters-to-the-future/resolve/main/assets/demo.mp4" controls width="100%"></video>
+
+[Watch the demo video](assets/demo.mp4)
+
 ![Tab 3: Beam flags a capsule to a grandmother who has since died and writes a gentle note](assets/gentle-opening.jpg)
 
 ![Tab 2: Beam reads 5,112 capsules (about 480k tokens) in one request and connects details planted years apart](assets/retrospective-long-life.jpg)
@@ -79,6 +85,8 @@ told to keep.
   returns nothing (in an earlier run with a smaller budget, 2 of 3 came back empty and the third degenerated into a
   list of 1,400 dates). `low` answered 5 of 5, in 15 s instead of 37 s. So the app switches to `low`, doubles the
   reasoning budget and retries once for lives over ~100k tokens.
+- **Lost in dates.** That degenerate list also showed up once in the live app. The app now keeps at most three
+  dates of any run it cites, and if Beam lists more than 30 in a row it stops the stream and tries once more.
 - The first version of the loop grader also required exact dates; the filler moves some dates, so loops are now
   checked by how they end. Both gradings are saved in the JSON.
 
@@ -146,7 +154,7 @@ style.css           FOMM look (dark space, stars, Earth)
 make_long_life.py   Uses Beam to expand the sample life into thousands of capsules
 needle_test.py      Measures whether Beam finds the planted details (graded by code)
 results/            Every answer and retrospective from needle_test.py
-assets/             Screenshots
+assets/             Screenshots and the demo video
 samples/            Synthetic life of Marina (hand-written + Beam-expanded) and sensitive examples
 ```
 
