@@ -29,7 +29,8 @@ CHOICES = {f"Marina, {len(HAND_WRITTEN)} hand-written capsules (2014–2026)": H
 if LONG:
     CHOICES = {f"Marina, long life: {len(LONG)} capsules (expanded with Beam)": LONG, **CHOICES}
 CHOICES["Only my own"] = []
-MAX_LIFE_CHARS = 2_500_000  # roughly 600k tokens, well inside Beam's 1M context
+MAX_LIFE_CHARS = 2_000_000  # about 670k tokens (Marina's long life: 1.43M chars = 480k tokens), inside Beam's 1M
+LONG_LIFE_CHARS = 300_000  # above this (~100k tokens) the retrospective switches to low effort
 FIRST_QUESTION = (
     "Hi! Who is this capsule for, and when should it arrive? "
     "(You can write in any language.)"
@@ -130,9 +131,9 @@ def life_summary(capsules):
     if not capsules:
         return "No capsules loaded."
     years = sorted(c.get("written", "")[:4] for c in capsules if c.get("written"))
-    chars = sum(len(c["text"]) for c in capsules)
+    chars = sum(len(c["text"]) + 75 for c in capsules)  # text plus the <capsule ...> tag around it
     span = f"{years[0]}–{years[-1]}" if years else "unknown years"
-    return f"**{len(capsules)} capsules**, {span}, about {chars // 4:,} tokens. Beam reads them all at once."
+    return f"**{len(capsules)} capsules**, {span}, about {chars * 10 // 30:,} tokens. Beam reads them all at once."
 
 
 def load_life(choice, upload, sealed):
@@ -154,7 +155,7 @@ def retrospective(capsules, language, request: gr.Request):
         for i, c in enumerate(capsules)
     )
     if len(body) > MAX_LIFE_CHARS:
-        yield "That is more than this demo accepts (about 600k tokens). Try fewer capsules."
+        yield "That is more than this demo accepts (about 670k tokens). Try fewer capsules."
         return
     msgs = [
         {"role": "system", "content": prompts.RETROSPECTIVE},
@@ -162,11 +163,24 @@ def retrospective(capsules, language, request: gr.Request):
     ]
     if language in LANGUAGES[1:]:
         msgs[1]["content"] += f"\n\nWrite the whole retrospective in {language}."
-    try:
-        yield from beam.stream(msgs, session_id(request), max_tokens=2000, temperature=0.5,
-                               demo_text="## Threads that kept coming back\nThe sea [2014-12-31]...")
-    except Exception as err:
-        yield friendly(err)
+    # Measured in needle_test.py: on a ~480k-token life, medium effort sometimes thinks until the limit and
+    # returns nothing; low effort answered every time, in less than half the time.
+    long_life = len(body) > LONG_LIFE_CHARS
+    for attempt in range(2 if long_life else 1):
+        try:
+            yield from beam.stream(msgs, session_id(request), max_tokens=3000, temperature=0.5,
+                                   effort="low" if long_life else "medium",
+                                   reasoning=beam.REASONING_BUDGET * (2 if long_life else 1),
+                                   demo_text="## Threads that kept coming back\nThe sea [2014-12-31]...")
+            return
+        except beam.EmptyAnswer as err:
+            if attempt or not long_life:
+                yield friendly(err)
+            else:
+                yield "_✨ Beam thought for too long. Trying once more…_"
+        except Exception as err:
+            yield friendly(err)
+            return
 
 
 # ---------- 3. Gentle opening ----------

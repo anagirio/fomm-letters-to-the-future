@@ -1,0 +1,975 @@
+{
+ "model": "reflection/Beam-1.0-501B-A23B",
+ "date": "2026-11-01",
+ "questions": [
+  {
+   "id": "parrot_man_name",
+   "question": "Marina drew an old man with a parrot on her bus. What was his REAL name?",
+   "answer_regex": "\\bValdir\\b"
+  },
+  {
+   "id": "parrot_name",
+   "question": "What was the parrot's real name?",
+   "answer_regex": "\\bJuca\\b"
+  },
+  {
+   "id": "parrot_man_moved",
+   "question": "Which city did the parrot man move to when he left the bus?",
+   "answer_regex": "Ponta Grossa"
+  },
+  {
+   "id": "parrot_man_age",
+   "question": "How old was the parrot man when he died?",
+   "answer_regex": "\\b91\\b"
+  },
+  {
+   "id": "postcard_city",
+   "question": "In which city did Marina find an old postcard of a man with a parrot?",
+   "answer_regex": "Lisbo[an]"
+  },
+  {
+   "id": "first_lemon_date",
+   "question": "On what date (YYYY-MM-DD) did Marina pick the first lemon of the tree she grew from a seed?",
+   "answer_regex": "2026-01-12"
+  },
+  {
+   "id": "lemon_years",
+   "question": "How many whole years passed between planting that seed and picking the first lemon?",
+   "answer_regex": "\\b10\\b|\\bten\\b"
+  },
+  {
+   "id": "asa_branca_year",
+   "question": "In what year did Marina first play 'Asa Branca' all the way to the end?",
+   "answer_regex": "\\b2023\\b"
+  },
+  {
+   "id": "asa_branca_late",
+   "question": "How many years after promising it to Tio Beto was that?",
+   "answer_regex": "\\b9\\b|\\bnine\\b"
+  },
+  {
+   "id": "driving_tests",
+   "question": "How many times in total did Marina take the driving test?",
+   "answer_regex": "\\b3\\b|\\bthree\\b"
+  },
+  {
+   "id": "swim_meters",
+   "question": "How many meters did she swim without stopping on the day she kept her 2014 promise to learn to swim?",
+   "answer_regex": "\\b25\\b"
+  },
+  {
+   "id": "dog_name",
+   "question": "What was the name of the dog buried under the jabuticabeira?",
+   "answer_regex": "\\bCoronel\\b"
+  },
+  {
+   "id": "savings_fund",
+   "question": "What name did Marina give her savings fund in the bank app?",
+   "answer_regex": "\\bMAR\\b"
+  },
+  {
+   "id": "rafa_daughter",
+   "question": "What is the name of Rafa's daughter?",
+   "answer_regex": "\\bLua\\b"
+  },
+  {
+   "id": "first_salary_gift",
+   "question": "What did Marina buy her mother with her first salary?",
+   "answer_regex": "printer|impressora"
+  },
+  {
+   "id": "book_pages",
+   "question": "How many pages does the finished book about her grandmother have?",
+   "answer_regex": "\\b64\\b"
+  }
+ ],
+ "loops": {
+  "lemon seed → first lemon (2026)": [
+   "lemon|limão|Limonada",
+   "first lemon|primeiro limão",
+   "2026"
+  ],
+  "'Asa Branca' promise → kept, nine years late (2023)": [
+   "Asa Branca",
+   "2023"
+  ],
+  "parrot man drawn → real name Valdir (2025)": [
+   "parrot|papagaio",
+   "Valdir"
+  ],
+  "learn to swim (2014) → 25 m (2022)": [
+   "swim|nadar",
+   "25 ?m|25 meters|2022-07-19"
+  ],
+  "sea dream → swimming with Vó Lúcia in it (2026)": [
+   "dream|sonho",
+   "(Vó|grandmother|Lúcia)[^.\\n]{0,120}(swim|nad)|(swim|nad)[^.\\n]{0,120}(Vó|grandmother|Lúcia)"
+  ],
+  "book about Vó → 'Menina do Mar' finished": [
+   "Menina do Mar",
+   "finished|64 pages|terminad|2026-09-27"
+  ]
+ },
+ "strict_loops": {
+  "lemon": [
+   "lemon|limão|Limonada",
+   "2016-01-12|2016",
+   "2026-01-12"
+  ],
+  "asa_branca": [
+   "Asa Branca",
+   "2014-04-07",
+   "2023-06-24"
+  ],
+  "parrot": [
+   "parrot|papagaio",
+   "Valdir"
+  ],
+  "swim": [
+   "swim|nadar",
+   "2014-03-10",
+   "2022-07-19"
+  ],
+  "dream": [
+   "dream|sonho",
+   "2014-07-02",
+   "2026-07-20"
+  ],
+  "book": [
+   "Menina do Mar",
+   "2026-09-27"
+  ]
+ },
+ "results": [
+  {
+   "test": "qa",
+   "condition": "none",
+   "capsules": 0,
+   "effort": "low",
+   "run": 1,
+   "answers": {
+    "parrot_man_name": "unknown",
+    "parrot_name": "unknown",
+    "parrot_man_moved": "unknown",
+    "parrot_man_age": "unknown",
+    "postcard_city": "unknown",
+    "first_lemon_date": "unknown",
+    "lemon_years": "unknown",
+    "asa_branca_year": "unknown",
+    "asa_branca_late": "unknown",
+    "driving_tests": "unknown",
+    "swim_meters": "unknown",
+    "dog_name": "unknown",
+    "savings_fund": "unknown",
+    "rafa_daughter": "unknown",
+    "first_salary_gift": "unknown",
+    "book_pages": "unknown"
+   },
+   "correct": {
+    "parrot_man_name": false,
+    "parrot_name": false,
+    "parrot_man_moved": false,
+    "parrot_man_age": false,
+    "postcard_city": false,
+    "first_lemon_date": false,
+    "lemon_years": false,
+    "asa_branca_year": false,
+    "asa_branca_late": false,
+    "driving_tests": false,
+    "swim_meters": false,
+    "dog_name": false,
+    "savings_fund": false,
+    "rafa_daughter": false,
+    "first_salary_gift": false,
+    "book_pages": false
+   },
+   "score": 0,
+   "text": "{\"parrot_man_name\": \"unknown\", \"parrot_name\": \"unknown\", \"parrot_man_moved\": \"unknown\", \"parrot_man_age\": \"unknown\", \"postcard_city\": \"unknown\", \"first_lemon_date\": \"unknown\", \"lemon_years\": \"unknown\", \"asa_branca_year\": \"unknown\", \"asa_branca_late\": \"unknown\", \"driving_tests\": \"unknown\", \"swim_meters\": \"unknown\", \"dog_name\": \"unknown\", \"savings_fund\": \"unknown\", \"rafa_daughter\": \"unknown\", \"first_salary_gift\": \"unknown\", \"book_pages\": \"unknown\"}",
+   "finish": "stop",
+   "seconds": 2.8,
+   "prompt_tokens": 470,
+   "completion_tokens": 182
+  },
+  {
+   "test": "qa",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "low",
+   "run": 1,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "3",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": true,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 16,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"3\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 4.6,
+   "prompt_tokens": 7803,
+   "completion_tokens": 671
+  },
+  {
+   "test": "qa",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "low",
+   "run": 2,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "3",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": true,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 16,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"3\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 4.5,
+   "prompt_tokens": 7803,
+   "completion_tokens": 719
+  },
+  {
+   "test": "qa",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "low",
+   "run": 3,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "3",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "a printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": true,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 16,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"3\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"a printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 4.3,
+   "prompt_tokens": 7803,
+   "completion_tokens": 644
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 1,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "9",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 15,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"9\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 18.9,
+   "prompt_tokens": 479712,
+   "completion_tokens": 2514
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 2,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "9",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "a printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 15,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"9\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"a printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 15.6,
+   "prompt_tokens": 479712,
+   "completion_tokens": 1646
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 3,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "11",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "9",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": false,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 14,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"11\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"9\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 18.4,
+   "prompt_tokens": 479712,
+   "completion_tokens": 2314
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 1,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-07-09",
+    "lemon_years": "12",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "unknown",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": false,
+    "lemon_years": false,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 13,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-07-09\", \"lemon_years\": \"12\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"unknown\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 31.5,
+   "prompt_tokens": 479713,
+   "completion_tokens": 7356
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 2,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "10",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "9",
+    "swim_meters": "25",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "a printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": true,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": true,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 15,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"10\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"9\", \"swim_meters\": \"25\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"a printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 20.0,
+   "prompt_tokens": 479713,
+   "completion_tokens": 3818
+  },
+  {
+   "test": "qa",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 3,
+   "answers": {
+    "parrot_man_name": "Valdir",
+    "parrot_name": "Juca",
+    "parrot_man_moved": "Ponta Grossa",
+    "parrot_man_age": "91",
+    "postcard_city": "Lisbon",
+    "first_lemon_date": "2026-01-12",
+    "lemon_years": "11",
+    "asa_branca_year": "2023",
+    "asa_branca_late": "9",
+    "driving_tests": "9",
+    "swim_meters": "unknown",
+    "dog_name": "Coronel",
+    "savings_fund": "MAR",
+    "rafa_daughter": "Lua",
+    "first_salary_gift": "printer",
+    "book_pages": "64"
+   },
+   "correct": {
+    "parrot_man_name": true,
+    "parrot_name": true,
+    "parrot_man_moved": true,
+    "parrot_man_age": true,
+    "postcard_city": true,
+    "first_lemon_date": true,
+    "lemon_years": false,
+    "asa_branca_year": true,
+    "asa_branca_late": true,
+    "driving_tests": false,
+    "swim_meters": false,
+    "dog_name": true,
+    "savings_fund": true,
+    "rafa_daughter": true,
+    "first_salary_gift": true,
+    "book_pages": true
+   },
+   "score": 13,
+   "text": "{\"parrot_man_name\": \"Valdir\", \"parrot_name\": \"Juca\", \"parrot_man_moved\": \"Ponta Grossa\", \"parrot_man_age\": \"91\", \"postcard_city\": \"Lisbon\", \"first_lemon_date\": \"2026-01-12\", \"lemon_years\": \"11\", \"asa_branca_year\": \"2023\", \"asa_branca_late\": \"9\", \"driving_tests\": \"9\", \"swim_meters\": \"unknown\", \"dog_name\": \"Coronel\", \"savings_fund\": \"MAR\", \"rafa_daughter\": \"Lua\", \"first_salary_gift\": \"printer\", \"book_pages\": \"64\"}",
+   "finish": "stop",
+   "seconds": 31.4,
+   "prompt_tokens": 479713,
+   "completion_tokens": 5917
+  },
+  {
+   "test": "retrospective",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "medium",
+   "run": 1,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": true,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 77,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **Drawing** first appears as the sea drawing Vó Lúcia framed above your bed [2014-02-20]; it hides under the mattress [2014-10-11], becomes useful at work [2017-11-17], and finally becomes the book *Menina do Mar* [2025-04-05, 2026-09-27].\n- **The sea and swimming** start as a promise and a recurring dream [2014-03-10, 2014-07-02], move through panic and four-second floats [2015-01-25], and close with swimming alone at Praia Mole [2024-06-21] and a dream where you are already swimming [2026-07-20].\n- **Vó Lúcia** runs through everything: the framed drawing [2014-02-20], Coronel the farm dog [2015-04-18], her death [2020-10-02], and the finished book read at her grave [2026-09-27].\n- **Limonada** begins as three seeds in a yogurt cup [2016-01-12], survives frost [2017-09-05], and gives her first lemon ten years later [2026-01-12].\n- **Seu Ivo and Juca** start as a bus observation [2014-05-19], become *Interbairros* [2016-05-03], end with a final strip [2019-07-03], and return when a woman reveals the parrot’s real name was Juca and her grandfather was Valdir [2025-05-24].\n- **Rafa** moves from pastel and Passeio Público [2015-03-03] to a breakup over cities [2018-02-14] to one kitchen dance and a deleted playlist [2025-10-18].\n- **Bia** is there from the wall in São Francisco [2014-08-15] to the Floripa room facing the sea [2019-08-08] to her wedding [2026-05-09].\n- **“Asa Branca”** is promised [2014-04-07], stalls at the second verse [2015-07-14], and is finally played all the way through [2023-06-24].\n- **Money** goes from R$ 340 on the 28th [2014-09-28] to a first salary [2018-09-30] to illustration paying half the bills [2025-08-12].\n- **Driving** fails twice on the same hill [2017-01-20, 2017-03-29], passes [2019-04-10], and later carries Limonada to Floripa [2024-03-02].\n\n## What you let go of\n\n- The idea that engineering had to be your whole identity: you stayed four years, not two [2018-12-20, 2022-07-19], then chose drawing and the sea [2023-01-30].\n- Rafa, without making him the villain [2018-02-14], and eventually the playlist too [2025-10-18].\n- The Sunday phone call, because there was no one left to call [2021-03-01].\n- The old sea dream of standing frozen at the edge [2014-07-02, 2024-06-21].\n- The bus comics as a daily thing [2017-03-15], though they never fully disappeared [2019-07-03, 2025-05-24].\n\n## Promises to yourself\n\n- **Keep drawing, at least one page a week** [2014-03-10]: kept, with lapses and returns [2016-05-03, 2025-04-05].\n- **Learn to swim** [2014-03-10]: kept [2022-07-19].\n- **Call Vó Lúcia every Sunday** [2014-03-10]: kept while she lived [2020-04-12]; changed by her death [2020-10-02].\n- **Learn “Asa Branca” by the next Festa Junina** [2014-04-07]: changed, then kept years later [2023-06-24].\n- **Live somewhere you can see the sea; keep Bia as first text** [2014-12-31]: kept [2024-06-21].\n- **Keep the lemon tree** [2016-01-12]: kept [2026-01-12].\n- **Keep the comics going** [2016-05-03]: still open; the account’s fate is not stated later.\n- **Leave the factory after two years** [2018-12-20]: changed; it took almost four [2022-07-19, 2023-01-30].\n- **Finish the book about Vó Lúcia** [2020-10-02]: kept [2026-09-27].\n- **Move to Lisbon or not** [2023-09-14]: changed to Florianópolis [2024-03-02, 2024-06-21].\n- **Save the sea-facing room for you** [2019-08-08]: kept [2024-06-21].\n- **Publish the book** [2026-09-27]: still open.\n\n## A letter from all your past selves\n\nYou kept drawing, even when you lied and said you stopped. You learned to swim, late and badly and then well. You called Vó Lúcia until there was no one to call, and then you turned the calls into a book. Limonada gave you a lemon. The parrot man was real, and his name was Valdir, and Juca was right. You did not move to Lisbon, but you moved toward the sea. You did not marry Rafa, and you danced with him once without sadness. You failed Cálculo, the driving test, and the two-year plan, and none of those were the end. You are not fearless, but you are no longer afraid of the answer. We are proud of you, and we are still a little worried about the publisher. Say yes. [2014-02-20, 2020-10-02, 2026-09-27]",
+   "finish": "stop",
+   "seconds": 20.6,
+   "prompt_tokens": 7752,
+   "completion_tokens": 4992,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": true,
+    "swim": true,
+    "dream": true,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "medium",
+   "run": 2,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 68,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **Drawing as the real work, not the hobby.** It starts hidden under the mattress [2014-10-11], becomes the bus comics [2016-05-03], pauses during the factory years [2017-03-15], returns through Vó Lúcia’s stories [2020-04-12], and ends with *Menina do Mar* [2026-09-27].\n- **The sea, and the body learning it.** The recurring dream of standing at the edge [2014-07-02] slowly changes: one foot in [2018-03-25], swimming next to someone [2022-01-09], then swimming alone at Praia Mole [2024-09-15].\n- **Vó Lúcia.** From the framed sea drawing [2014-02-20] to Sunday calls [2014-03-10], Coronel’s story [2015-04-18], cold hands at New Year [2020-01-01], and the book finished at her grave [2026-09-27].\n- **Bia and the sea-facing room.** The wall in São Francisco [2014-08-15], the promise to visit [2019-08-08], and the room saved for you [2024-06-21].\n- **Limonada.** Three seeds in a yogurt cup [2016-01-12], frost survival [2017-09-05], first flowers [2024-07-07], first lemon [2026-01-12].\n- **Seu Ivo and Juca.** The parrot man on the 7am bus [2014-05-19], the comics [2016-06-30], his departure [2019-07-03], and the granddaughter who knew the real name [2025-05-24].\n- **Asa Branca.** Promised to Tio Beto [2014-04-07], half-played [2015-07-14], abandoned [2018-06-24], finally finished [2023-06-24].\n\n## What you let go of\n\n- **Rafa as the future.** The São Paulo question [2016-08-21] becomes a clean, sad breakup [2018-02-14], then a kind dance years later [2025-10-18].\n- **The factory as “two years, then the sea.”** It stretched to almost four [2022-07-19] before you quit [2023-01-30].\n- **The hidden sketchbook.** It stops being contraband and becomes work, then a book [2016-02-27], [2025-04-05].\n- **Lisbon as the answer.** You chose Floripa instead [2024-03-02], closer to Mom, Bia, and the same ocean.\n\n## Promises to yourself\n\n- **Keep drawing, one page a week** [2014-03-10]: **kept**, with long pauses and a different shape than planned [2016-05-03], [2025-08-12].\n- **Learn to swim** [2014-03-10]: **kept** [2022-07-19].\n- **Call Vó Lúcia every Sunday** [2014-03-10]: **changed/ended**; daily calls during the pandemic [2020-04-12], then grief [2021-03-01].\n- **Learn “Asa Branca” by next Festa Junina** [2014-04-07]: **kept late** [2023-06-24].\n- **Live where you can see the sea from the window** [2014-12-31]: **kept**, through Bia’s saved room [2024-06-21].\n- **Bia still the first person you text** [2014-12-31]: **kept** [2024-06-21], [2025-01-19].\n- **Keep the lemon tree** [2016-01-12]: **kept** [2026-01-12].\n- **Keep the bus comics going** [2016-05-03]: **broken, then revived in memory** [2017-03-15], [2025-05-24].\n- **Two years at the factory, then the sea** [2018-12-20]: **broken** [2022-07-19], later corrected [2023-01-30], [2024-06-21].\n- **Finish the book about Vó Lúcia** [2020-10-02]: **kept** [2026-09-27].\n- **Publish the book** [2026-09-27]: **still open**.\n- **Move somewhere by the sea** [2023-09-14]: **changed** from Lisbon to Floripa [2024-03-02].\n- **Draw for a living and live near the sea** [2021-03-01]: **kept, imperfectly** [2026-03-01].\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe kept the drawing. We kept the sea. We kept Bia, Limonada, and the stubbornness. We lost Vó Lúcia, and we turned that loss into pages. We were late with almost everything: swimming, Asa Branca, the book, the move. But late is not never. You are not the engineer who failed Cálculo, or the girl who couldn’t float, or the person who said yes to drawing and no to herself. You are the one who finally went in. We are proud of you, and a little jealous of the window.\n\nLove, all of us.",
+   "finish": "stop",
+   "seconds": 17.9,
+   "prompt_tokens": 7752,
+   "completion_tokens": 3918,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "skeleton",
+   "capsules": 74,
+   "effort": "medium",
+   "run": 3,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 78,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **Drawing as the real work, not the hobby.** It starts hidden under the mattress [2014-10-11], becomes public through the bus comics [2016-05-03], and ends as half your income plus a finished book [2025-08-12], [2026-09-27].\n- **The sea and swimming.** From the recurring dream and the promise to learn [2014-03-10], [2014-07-02] to floating [2021-08-08], 25 meters [2022-07-19], and finally swimming alone at Praia Mole [2024-09-15].\n- **Vó Lúcia.** The drawing above the bed [2014-02-20], the Coronel story [2015-04-18], the cold hands at New Year [2020-01-01], her death [2020-10-02], and the book that became *Menina do Mar* [2025-04-05], [2026-09-27].\n- **Bia.** From the wall in São Francisco [2014-08-15] to Floripa [2019-08-08], the saved sea-facing room [2024-06-21], and her wedding [2026-05-09].\n- **Limonada.** A lemon seed in a yogurt cup [2016-01-12] becomes a ten-year-old tree with her first lemon [2026-01-12].\n- **Seu Ivo and Juca.** The parrot man on the 7am bus [2014-05-19] becomes a comic character [2016-06-30], gets a farewell strip [2019-07-03], and turns out to have been real in one of the two names [2025-05-24].\n- **Asa Branca.** Promised to Tio Beto [2014-04-07], half-played [2015-07-14], abandoned [2018-06-24], then finally finished [2023-06-24].\n- **Money.** From R$ 340 on the 28th [2014-09-28] to a first salary [2018-09-30], a “MAR” savings fund [2022-10-03], and illustration as half your income [2025-08-12].\n\n## What you let go of\n\n- **Rafa and the São Paulo future.** You stopped pretending you wanted to follow [2017-06-12], broke up without blame [2018-02-14], and finally deleted the playlist without pain [2025-10-18].\n- **The factory trap.** You named it as a trap while still inside it [2017-03-15], stayed longer than planned, then quit for half the salary and twice the happiness [2023-01-30].\n- **The hidden sketchbook.** It stopped being illegal and moved to the windowsill [2016-02-27].\n- **Sunday calls.** You kept them while Vó Lúcia lived [2017-03-15], [2020-04-12], then had to let the habit go [2021-03-01].\n- **Lisbon as the answer.** You considered it seriously [2023-09-14], then chose Floripa and the same ocean closer to home [2024-03-02].\n\n## Promises to yourself\n\n- **Keep drawing, at least one page a week** [2014-03-10]: **kept**, with gaps and detours, ending in paid illustration and a finished book [2016-05-03], [2025-08-12], [2026-09-27].\n- **Learn to swim** [2014-03-10]: **kept** [2022-07-19].\n- **Call Vó Lúcia every Sunday** [2014-03-10]: **kept while possible** [2017-03-15], [2020-04-12]; ended with her death [2021-03-01].\n- **Learn “Asa Branca” by the next Festa Junina** [2014-04-07]: **kept, nine years late** [2023-06-24].\n- **Live somewhere you can see the sea from the window** [2014-12-31]: **partly kept** — you wake to Bia’s sea-facing window [2024-06-21], but note it is not yet your own [2026-03-01].\n- **Bia still the first person you text** [2014-12-31]: **still open**; the friendship is clearly alive, but no later capsule confirms this exact detail.\n- **Two years at the factory, then somewhere by the sea** [2018-12-20]: **broken/changed** — it became almost four years [2022-07-19], then a quit [2023-01-30] and a move [2024-06-21].\n- **Finish the book about Vó Lúcia** [2020-10-02]: **kept** [2026-09-27].\n- **Keep the lemon tree** [2016-01-12]: **kept** [2026-01-12].\n- **Keep the bus comics going** [2016-05-03]: **changed/stopped** [2017-03-15], though the character outlived the account [2025-05-24].\n- **Move to Lisbon** [2023-09-14]: **changed** to Florianópolis [2024-03-02].\n- **Publish the book** [2026-09-27]: **still open**.\n- **Do what you would do if not afraid** [2021-03-01]: **partly kept** — you now do both, imperfectly [2026-03-01].\n- **Pass the driving test** [2017-01-20]: **kept** [2019-04-10].\n\n## A letter from all your past selves\n\nWe wrote these for you in kitchens, buses, and quiet rooms. We were scared of calculus, of the sea, of Mom's questions, of wanting too much. We hid a sketchbook under a mattress and called it a hobby. We failed, stalled on hills, and kept going. We loved Rafa and let him go. We lost Vó Lúcia and kept her laugh. We planted a lemon seed in a yogurt cup and it became a tree. We learned to float, then to swim, then to enter the water alone. We moved toward the sea, not all at once, but enough. We drew Seu Ivo and Juca and found out one name was real. We played Asa Branca badly, then fully. We are proud of you for finishing the book and for not deleting the comics in a bad mood. Keep drawing. Keep calling. Keep swimming. The window is blue. We are still here.",
+   "finish": "stop",
+   "seconds": 23.0,
+   "prompt_tokens": 7752,
+   "completion_tokens": 5945,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 1,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": true,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": true,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 54,
+   "dates_not_found": [
+    "2020-02-21"
+   ],
+   "text": "## Threads that kept coming back\n\n**Limonada, the lemon tree.** Planted as three seeds in a yogurt cup labeled \"MARINA\" on 2014-07-09, sprouted 2014-09-21, survived frost, a move to Floripa, and ten years of overwatering. She produced her first flower in 2018-11-25 and her first lemon on 2026-01-12. The yogurt cup itself became a pencil holder. The thread runs from a yogurt cup to a balcony facing the sea.\n\n**Seu Ivo and Juca.** The parrot man first appeared on the 7am Interbairros II on 2014-03-05. Marina named him \"Seu Ivo\" in her head on 2014-09-16 and the parrot \"Juca\" on 2014-10-19. He moved to Ponta Grossa around 2019-07. In 2025-05-24, a woman at a comics fair revealed her grandfather was Valdir, the real Seu Ivo, and the parrot really was Juca. Marina invented one name and got the other right.\n\n**The sea dream.** First recorded 2014-07-02: standing at the edge, warm water, feet stuck. The dream changed in increments: one toe in (2015-12-14), right foot (2016-07-02), one foot (2017-07-02), both feet (2018-12-07), knees (2020-02-21), swimming (2022-07-30), floating (2023-10-23), and finally Vó Lúcia swimming beside her (2026-07-20). The calves stopped tightening. The dream kept its promise.\n\n**Vó Lúcia and Coronel.** The grandmother in Irati, the farm dog who walked her to school. Vó told the story dozens of times, and Coronel got braver with each telling. Vó died of Covid on 2020-10-02. Marina drew 14+ pages of her stories, finished the book \"Menina do Mar\" on 2026-07-13, and read it aloud at Vó's grave. The laugh that \"started high and fell like stairs\" was the hardest thing to draw.\n\n**Asa Branca.** Tio Beto taught three chords on 2014-04-02. The promise to learn the full song by Festa Junina became a running joke: \"one more year\" every year. She played it all the way through on 2023-06-24, nine years late. Tio Beto said \"I told you, one more year\" as if it had been one.\n\n**Bia and the bar wall.** Names written on the wall in São Francisco on 2014-08-15, 2015-08-03, 2016-08-03, 2017-08-10, 2018-05-19, 2019-08-15. Bia moved to Floripa on 2019-08-01 and saved the spare room facing the sea. She got engaged 2025-01-24 and married 2026-05-09.\n\n**The bus comics (Interbairros).** Started 2016-05-02, 300+ followers, Seu Ivo and Juca. Stopped in January 2017 for the factory internship. A woman at a comics fair in 2025-05-24 held a printed strip and said \"this is my grandfather.\"\n\n**Money checks.** From R$ 340 on the 28th in 2014 to a salary, savings fund named \"MAR\", and illustration paying half the bills by 2025.\n\n**The república fridge.** Names on every yogurt, a leaky roof, a bathroom schedule as diplomatic treaty. The fridge rules survived even after Marina moved out.\n\n**Mom and the printer.** Mom said drawing was a hobby. She printed Marina's comics on the printer Marina bought her and never said she liked them. In 2020-03-08 she texted \"você desenha tão bem\" for the first time.\n\n## What you let go of\n\n**Rafa.** The boyfriend who loved São Paulo. Broke up 2018-02-14. She kept the playlist for years, then deleted it on 2025-11-22. He married, has a daughter called Lua. She ran into him at a wedding in 2025-10-18 and danced one song in the kitchen. \"Not sad. Just the pastel.\"\n\n**The factory.** Started 2017-03-02, Cláudio as mentor. Quit 2023-01-15. \"Being good at something you don't love is a trap.\" Cláudio retired. His chair stayed empty.\n\n**The driving test.** Failed repeatedly 2017, passed 2019-04-10. The Detran hill was personal.\n\n**The sea dream's fear.** The calves stopped tightening. The feet moved. The dream changed from standing at the edge to swimming to floating to Vó Lúcia swimming beside her.\n\n**The sketchbook under the mattress.** Moved to the desk, then the windowsill, then the kitchen table. The hiding place became a display.\n\n## Promises to yourself\n\n- **\"Keep drawing, at least one page a week\"** (2014-03-10): Kept, mostly. Drew every week, even on napkins, even during lockdown. The book has 64 pages.\n- **\"Learn to swim\"** (2014-03-10): Kept. 25 meters in 2022-07-19, eight years late. Dona Cida cried.\n- **\"Call Vó Lúcia every Sunday\"** (2014-03-10): Kept until her death on 2020-10-02. Then drew her stories instead.\n- **\"Learn Asa Branca by Festa Junina\"** (2014-04-02): Kept, eventually. Played it all the way through on 2023-06-24, nine years late.\n- **\"Two years at the factory, then the sea\"** (2018-12-20): Changed. Took four years, not two. Arrived in Floripa on 2024-06-21.\n- **\"Publish the book\"** (2020-10-02): Kept. \"Menina do Mar\" finished 2026-07-13, sent to publisher 2026-11-20.\n- **\"Live near the sea\"** (2014-12-31): Kept. Moved to Floripa 2024-06-21. Bia saved the room.\n- **\"Don't forget umbrellas\"** (2014-01-05): Still open. She still forgets them.\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe wrote this from the bus, from the república, from the factory floor, from the balcony where the sea is finally outside the window. We drew on everything: margins, napkins, receipts, fogged glass. We hid the sketchbook under the mattress and then stopped hiding it. We planted a seed in a yogurt cup and it became a tree with lemons. We failed Cálculo and passed it. We failed Asa Branca for nine years and then played it through. We were afraid of the water and then we swam.\n\nYou kept drawing. That was the one thing we all agreed on, even when we disagreed about everything else. The sea dream changed because you changed. The feet moved.\n\nVó Lúcia called you menina do mar. She was right. She was always right, and she would have said so, and then she would have told you to eat more.\n\nWe are proud of you. Not because you arrived, but because you kept going. The lemon tree has lemons now. You have a book. You have a window. You have us, all of us, in the margins.\n\n— All of us, 2014–2026",
+   "finish": "stop",
+   "seconds": 20.3,
+   "prompt_tokens": 479660,
+   "completion_tokens": 4004,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": false,
+    "parrot": true,
+    "swim": true,
+    "dream": true,
+    "book": false
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 2,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": true,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": false
+   },
+   "dates_cited": 64,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **The sea dream.** From [2014-03-10] onward you stood at the edge with warm water and feet that wouldn't move, waking with tight calves. It recurred for years, then slowly shifted: one foot in [2015-12-14], both feet [2018-09-18], floating [2020-09-21], swimming [2022-01-09], and finally swimming alone at Praia Mole [2024-09-12]. The dream didn't vanish; it became real.\n- **Limonada.** Planted three seeds in a yogurt cup on [2014-07-09], named her, moved her to a real pot [2016-06-06], wrapped her in scarves through frosts, carried her in the back seat to Floripa [2024-06-10]. First lemon: [2026-01-12]. Ten years. You never gave up on her.\n- **Seu Ivo and Juca.** The parrot man on the 7am Interbairros II, first drawn [2014-03-05], named in your head [2014-09-16], turned into the \"Interbairros\" comics [2016-05-02]. He moved to Ponta Grossa [2019-07-03]. You drew his goodbye strip and cried at the bus stop. He never knew his name was Ivo.\n- **Vó Lúcia and Coronel.** The farm dog in Irati, waiting at the gate, buried under the jabuticabeira. She told it differently every call, the dog getting braver each time [2014-11-02], [2015-09-20], [2016-11-02]. You drew 14 versions, then 64 pages. She died [2020-10-02]. You finished the book anyway.\n- **Tio Beto and \"Asa Branca.\"** Promised at Festa Junina [2014-04-07], failed every year, \"one more year\" became a family prayer. You played it all the way through [2023-06-24]. Nine years late. He said \"I told you, one more year\" as if it had been one.\n- **Bia and the bar wall.** Names written in marker in São Francisco [2014-08-15], checked and re-checked [2015-08-03], [2017-08-10], [2018-05-19]. She moved to Floripa [2019-08-01] and saved you the room facing the sea [2024-06-21].\n- **Mom and the drawings.** \"Drawing is a hobby\" [2014-03-10], sketchbook hidden under the mattress [2014-07-28], then in the calculus textbook [2014-12-07]. She printed your comics on the printer you bought her [2018-10-07] and never said she liked them. She said \"you got her hands right\" [2021-05-16]. That was the compliment.\n- **Money checks.** R$ 340 on the 28th [2014-08-28], R$ 120 on the 12th [2015-05-10], R$ 3.800 salary [2018-09-30]. The panic never fully left, but it got quieter.\n\n## What you let go of\n\n- **Rafa.** The São Paulo boyfriend who bought pastéis after every Cálculo failure [2015-06-08]. You broke up in February 2018 because he wanted São Paulo and you wanted the sea [2018-02-14]. You kept the playlist, then deleted it [2025-10-18]. You ran into him at a wedding in 2025; he has a daughter called Lua. You danced one song and it was nice and not sad.\n- **The factory.** You said two years [2018-12-20]. It took four. You quit [2023-01-15] for a solar startup at half the salary. Cláudio said \"you should be drawing full time\" [2021-03-29]. You listened, eventually.\n- **The bus comics.** \"Interbairros\" peaked at 2,000 likes [2019-07-15] and then went quiet. You stopped posting in January 2017. You never deleted the account. A woman at a comics fair in 2025 held a strip and said \"this is my grandfather\" [2025-05-24]. He was Valdir. The parrot was Juca. You invented one name and got the other right.\n- **The república.** Four girls, one bathroom, names on yogurts [2014-02-20]. You left in 2018. You still write your name on things out of habit [2025-05-19].\n- **Vó Lúcia.** She died of Covid [2020-10-02]. You didn't finish the book in time. You finished it anyway, 64 pages, and read it aloud at her grave in Irati [2026-09-27].\n\n## Promises to yourself\n\n- **\"Draw one page a week\"** [2014-03-10]: kept. You drew through calculus failures, factory lunches, grief, and a pandemic. The sketchbook moved from under the mattress to the kitchen table to the balcony.\n- **\"Learn to swim\"** [2014-03-10]: kept. Four seconds of floating in 2015 [2015-07-20], 25 meters in 2022 [2022-07-19], swimming alone at Praia Mole [2024-09-12]. Eight years.\n- **\"Call Vó every Sunday\"** [2014-03-10]: kept until her death [2020-10-02]. You still pick up the phone on Sundays [2026-02-10].\n- **\"Asa Branca by Festa Junina\"** [2014-04-07]: kept [2023-06-24]. Nine years of \"one more year.\"\n- **\"Live somewhere I can see the sea from the window\"** [2014-12-31]: kept [2024-06-21]. Bia saved you the room.\n- **\"Two years at the factory, then the sea\"** [2018-12-20]: broken. It took four years and a solar startup. You left [2023-01-15].\n- **\"Publish the book\"** [2020-10-02]: kept [2026-09-18]. You said yes to the publisher on a Tuesday.\n- **\"Lemon tree\"** [2014-07-09]: kept. First lemon [2026-01-12]. Ten years.\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe are all here, the ones who forgot umbrellas and the ones who hid sketchbooks under mattresses and the ones who cried in the RU. We wrote \"one more year\" so many times it became a prayer, and then it became true. You kept drawing when nobody asked, kept calling when nobody answered, kept watering a tree that gave nothing back for a decade. You were afraid of the water and you went in anyway, slowly, the way you do everything that matters. We are proud of you, not because you arrived, but because you kept walking toward the sea without knowing if it would be there. It was. It is. We are still here, in the margins, in the condensation on the window, in the name on the yogurt cup. Keep going. We are watching from the bus.\n\n— 18, 20, 22, 24, 26, 28, and 30",
+   "finish": "stop",
+   "seconds": 12.2,
+   "prompt_tokens": 479660,
+   "completion_tokens": 2491,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": true,
+    "swim": true,
+    "dream": false,
+    "book": false
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 3,
+   "loops": {
+    "lemon seed → first lemon (2026)": false,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 107,
+   "dates_not_found": [
+    "2015-04-19",
+    "2019-07-02"
+   ],
+   "text": "## Threads that kept coming back\n\n- **Limonada, the lemon tree.** First planted in a yogurt cup in 2014 [2014-07-09], named by the república girls [2014-09-21], survived frost, moves, and years of no lemons [2017-09-01, 2020-07-22]. The loop closes in 2026, when she finally gives a lemon [2026-01-12, 2026-07-07].\n- **Seu Ivo and Juca, the parrot man.** First noticed on the 7am Interbairros II [2014-03-05], named in your head, drawn in margins for years [2014-05-04, 2015-09-14]. He disappears, returns with bandages, and finally moves to Ponta Grossa [2019-07-02, 2019-07-10]. You still say “bom dia, motorista” for him [2020-01-08].\n- **The sea dream.** From 2014: warm water, feet stuck, tight calves [2014-07-02, 2014-11-09]. It changes slowly: one toe [2015-12-14], one foot [2016-07-03], both feet [2018-10-07], swimming [2022-01-09], and finally no fear [2026-07-04].\n- **Vó Lúcia and Coronel.** Sunday calls, the farm in Irati, the jabuticabeira, the dog who waited at the gate [2014-01-26, 2015-04-19, 2016-11-02]. Coronel gets braver in every retelling [2017-09-17, 2020-04-18]. Vó dies in October 2020 [2020-10-02, 2020-10-05], but her stories become the book *Menina do Mar* [2020-10-04, 2026-09-27].\n- **Drawing vs. engineering.** You hide the sketchbook under the mattress [2014-07-28, 2015-03-19], lie to Mom about it [2014-10-18, 2015-05-11], then slowly bring it into the open: bus comics [2016-05-02], factory diagrams [2017-03-22], and finally illustration as half your income [2025-08-19, 2026-08-03].\n- **Swimming.** From panic in Bia’s pool [2014-04-28] to 25 meters [2022-07-19], then the sea [2024-09-12, 2026-07-07].\n- **Asa Branca.** Tio Beto’s promise, “one more year,” repeated for years [2014-04-07, 2015-07-05, 2016-06-07]. You finally play it through in 2023 [2023-06-24] and again in 2026 [2026-05-09, 2026-07-28].\n- **Bia.** The bar wall in São Francisco [2014-08-20, 2015-08-03], the pastel de feira, the move to Floripa [2019-08-01, 2019-08-08], and the spare room facing the sea [2024-06-21].\n- **Mom.** Bolachas, the printer, the fridge, and the slow shift from “drawing is a hobby” [2014-03-22, 2015-05-11] to printing your comics [2018-10-07, 2020-06-28] and saying “you got her hands right” [2021-05-16, 2022-03-14].\n\n## What you let go of\n\n- **Rafa and São Paulo.** The relationship ends in 2018 because you want different cities [2018-02-14, 2018-02-17]. You keep the playlist for a while [2018-02-25, 2019-02-02], then delete it in 2025 [2025-10-18, 2026-08-02].\n- **The república on Rua XV.** Four girls, one bathroom, names on yogurts [2014-02-20, 2015-08-23]. You leave in 2018 [2018-12-12] and still miss the old wood smell [2021-02-20, 2026-07-04].\n- **Seu Ivo and Juca.** The parrot man moves away [2019-07-02, 2019-07-10]. You stop posting the comics [2017-05-28, 2017-10-15], but keep drawing him from memory [2022-08-03, 2026-05-28].\n- **Vó Lúcia.** She dies in October 2020 [2020-10-02, 2020-10-05]. The Sunday calls stop, and the grief becomes the book [2020-10-04, 2026-09-27].\n- **Money panic.** The R$ 340-on-the-28th years [2014-09-28, 2015-09-28] fade into savings, then the “MAR” fund [2018-11-30, 2022-08-20], then the “book” fund [2024-09-30, 2026-10-03].\n- **Calculus.** It never becomes your friend, but it stops being your enemy [2014-03-16, 2016-05-10, 2018-03-01].\n\n## Promises to yourself\n\n- **Draw one page a week.** Kept, mostly. You draw in margins, on napkins, in meetings, and eventually for a living [2014-03-10, 2016-12-18, 2025-08-19].\n- **Learn to swim.** Kept, late. From four seconds of panic [2014-04-28] to 25 meters [2022-07-19] and swimming in the sea [2024-09-12, 2026-07-07].\n- **Call Vó every Sunday.** Kept until her death [2014-03-10, 2020-10-02]. Afterward, you draw at that hour instead [2020-11-08, 2024-10-15].\n- **Play “Asa Branca” all the way through.** Kept, very late. Tio Beto’s “one more year” becomes real in 2023 [2023-06-24] and again in 2026 [2026-05-09, 2026-07-28].\n- **Live somewhere you can see the sea from the window.** Kept. You move to Floripa in 2024 [2024-06-21, 2024-06-23].\n- **Two years at the factory, then leave.** Changed. It takes longer, but you leave in 2023 [2023-01-15, 2023-01-30].\n- **Publish the book.** Kept. *Menina do Mar* is finished in 2026 [2026-09-27, 2026-10-15].\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe kept the sketchbook. We kept the lemon tree. We kept the sea dream, even when it hurt, and we kept drawing it until it changed. We were scared of the water and we went in anyway, slowly, in our own time. We lied to Mom about the drawings and then she printed them anyway, which is its own kind of love. We missed Vó and turned her stories into a book. We missed Seu Ivo and kept his parrot alive in ink. We failed calculus and passed it. We failed “Asa Branca” and passed it too. We moved to the sea. We are still here, still drawing, still a little stubborn, still menina do mar. You did not waste the ink.\n\n— 18, 20, 22, 24, 26, 28, and 30, together.",
+   "finish": "stop",
+   "seconds": 13.5,
+   "prompt_tokens": 479660,
+   "completion_tokens": 2539,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 4,
+   "loops": {
+    "lemon seed → first lemon (2026)": true,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 67,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **The sea dream and the water.** It first appears as a recurring childhood dream: standing at the edge, warm water, feet stuck, tight calves on waking [2014-07-02]. It slowly changes: one foot in [2015-12-14], both feet in [2018-10-07], then swimming [2022-07-30]. The loop closes when you swim in the sea alone at Praia Mole [2024-09-12] and later swim 25 meters [2022-07-19].\n- **Drawing as the thing you kept doing.** From margins of calculus notebooks [2014-03-02] to bus comics [2016-05-02], factory diagrams [2017-03-22], and finally the book *Menina do Mar* [2026-09-27]. The hiding place changes: under the mattress [2014-07-28], then in the backpack [2018-06-07], then openly on the desk [2021-03-15].\n- **Seu Ivo and Juca.** The parrot man on the 7am Interbairros II becomes a named character [2014-09-16], then a comic [2016-05-02], then a goodbye strip when he moves to Ponta Grossa [2019-07-15]. He returns in memory and in dreams [2021-07-17].\n- **Vó Lúcia and Coronel.** The farm dog story grows with each telling [2014-09-05], [2015-10-05], [2020-04-18]. After her death [2020-10-02], the stories become drawings, then a book [2020-10-11], [2026-09-27].\n- **Limonada.** A lemon seed in a yogurt cup [2014-07-09] becomes a plant, then a balcony tree, then flowers [2018-11-25], then a first lemon [2026-01-12]. The loop closes when you eat it [2026-10-11].\n- **Bia.** From pastel de feira and bus seats [2014-01-19] to the wall in São Francisco [2014-08-15], to Floripa [2019-08-01], to saving you the sea-facing room [2024-06-21].\n- **Money checks.** The same anxious ritual from R$ 340 on the 28th [2014-08-28] to R$ 4.200 and a fund named MAR [2026-08-03]. The number changes; the honesty does not.\n\n## What you let go of\n\n- **Rafa and São Paulo.** He was real and kind, but the geography never matched [2015-02-23], [2017-06-18]. The breakup is named as two people wanting different cities [2018-02-14]. Later, you run into him at a wedding and it is simply nice [2025-10-18].\n- **The factory as identity.** It paid the bills and gave you Cláudio [2017-03-02], but you leave it [2023-01-15], [2023-01-30]. The badge stays in a drawer.\n- **The bus comics as a public project.** They peak with Seu Ivo and Juca [2016-05-02], then go quiet [2017-05-28]. You keep drawing, but not for the feed.\n- **The república.** Four girls, one bathroom, names on yogurts [2014-02-20]. You leave it [2018-12-12], but the fridge rules survive as a joke.\n- **Vó Lúcia’s voice.** The Sunday calls end [2020-10-02]. The book becomes the place where the voice lives [2020-10-11].\n\n## Promises to yourself\n\n- **Draw one page a week.** Kept, unevenly, for years [2014-03-10], [2016-12-18], [2023-10-01].\n- **Learn to swim.** Kept, slowly: four seconds [2014-06-22], 25 meters [2022-07-19], sea swimming [2024-09-12].\n- **Call Vó Lúcia every Sunday.** Kept until her death [2020-10-02]; after that, the book becomes the call [2020-10-11].\n- **Play “Asa Branca” all the way through.** Kept, nine years late [2023-06-24], [2026-05-09].\n- **Two years at the factory, then the sea.** Changed: it took longer [2018-12-20], [2024-06-21].\n- **Keep the lemon tree alive.** Kept [2014-07-09], [2026-01-12].\n- **Publish the book.** Kept [2026-09-27], [2026-10-04].\n- **Live near the sea.** Kept [2024-06-21], [2024-07-01].\n\n## A letter from all your past selves\n\nYou kept drawing when no one asked, and you kept calling when no one answered. You were scared of water, of money, of being ordinary, and you went anyway, slowly, with a sketchbook and a plant. You did not become fearless. You became someone who draws the fear and then swims. The sea was never the point; the point was that you kept walking toward it. We are proud of you, and we are still a little ridiculous. That is fine. That is us. [2014-01-05], [2020-10-02], [2026-01-12]",
+   "finish": "stop",
+   "seconds": 10.8,
+   "prompt_tokens": 479660,
+   "completion_tokens": 1867,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": false,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "low",
+   "run": 5,
+   "loops": {
+    "lemon seed → first lemon (2026)": false,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 83,
+   "dates_not_found": [
+    "2015-04-19"
+   ],
+   "text": "## Threads that kept coming back\n\n- **Limonada, the lemon tree.** You planted seeds in a yogurt cup in 2014 [2014-07-09], moved her to a real pot in 2016 [2016-06-25], and she finally gave you a lemon in 2026 [2026-01-12]. The running joke became a real promise kept.\n- **Seu Ivo and Juca.** The parrot man on the 7am Interbairros II first appears in 2014 [2014-05-19], gets named in your head in 2014 [2014-09-16], and leaves the bus in 2019 [2019-07-15]. You kept drawing him anyway.\n- **Vó Lúcia and Coronel.** The farm dog story starts early [2014-03-25], grows braver with every retelling [2015-04-19], and becomes the book after her death [2020-10-02].\n- **The sea dream.** Standing at the edge with stuck feet begins in 2014 [2014-07-02], shifts to one foot in 2015 [2015-01-30], and finally becomes swimming in 2026 [2026-08-29].\n- **Umbrellas.** You forgot them in 2014 [2014-01-05], got soaked in 2014 [2014-03-22], and were still borrowing them in 2018 [2018-01-08]. The answer to your 2014 question is: no, not really.\n- **Bia.** From pastel de feira in 2014 [2014-01-08] to saving you the sea-facing room in 2024 [2024-06-21]. She stayed the first person you text.\n- **Rafa.** Pastel de feira and São Paulo from 2015 [2015-02-14], the breakup in 2018 [2018-02-17], and a peaceful wedding encounter in 2025 [2025-10-18].\n- **Mom and drawing.** She said it was a hobby in 2014 [2014-03-22], printed your comics by 2018 [2018-12-02], and said “you got her hands right” in 2021 [2021-05-22].\n- **Asa Branca.** Tio Beto’s promise starts in 2014 [2014-04-07], fails at Festa Junina in 2015 [2015-07-05], and is finally played all the way through in 2023 [2023-06-24].\n- **The fridge with names.** From the república in 2014 [2014-02-20] to your own kitchen in 2022 [2022-10-22].\n- **Swimming.** Four seconds in 2014 [2014-04-28], Dona Cida in 2017 [2017-07-28], 25 meters in 2022 [2022-07-19].\n- **Money checks.** R$ 340 on the 28th in 2014 [2014-05-12], R$ 210 on the 26th in 2015 [2015-05-26], R$ 410 on the 3rd in 2026 [2026-02-03]. The panic got quieter, not gone.\n- **Bus comics.** Interbairros starts in 2016 [2016-05-02], pauses in 2017 [2017-05-28], and returns privately in 2025 [2025-05-28].\n- **Factory to solar.** The factory begins in 2017 [2017-03-02], Cláudio retires in 2022 [2022-04-27], and you leave for the solar startup in 2023 [2023-01-15].\n- **Floripa.** The move happens in 2024 [2024-06-21], Limonada gets sea air in 2024 [2024-07-01], and you swim alone at Praia Mole in 2024 [2024-09-12].\n- **Menina do Mar.** The book starts after Vó’s death in 2020 [2020-10-04], reaches 12 pages in 2024 [2024-10-15], and is finished in 2026 [2026-09-18].\n\n## What you let go of\n\n- **Rafa.** You kept the playlist for years [2015-02-14], then deleted it in 2025 [2025-10-18]. Not a betrayal, just an ending.\n- **The bus comics as a public thing.** You stopped posting in 2017 [2017-05-28], but Seu Ivo and Juca stayed in your notebook.\n- **The factory.** You were good at it, and that was the trap [2017-03-02]. You left in 2023 [2023-01-15].\n- **The república.** Four girls, one bathroom, names on yogurts [2014-02-20]. You left in 2018 [2018-02-20], but the smell of old wood stayed.\n- **Vó Lúcia.** She died in 2020 [2020-10-02]. You still call her number sometimes [2021-04-16].\n- **Seu Ivo.** He moved to Ponta Grossa in 2019 [2019-07-15]. You still say “bom dia, motorista” for him.\n- **The fear of the sea.** It didn’t vanish, but it shrank from standing at the edge [2014-07-02] to swimming alone [2024-09-12].\n\n## Promises to yourself\n\n- **Draw one page a week.** Asked in 2014 [2014-03-10]. Kept, unevenly, for years [2018-03-10]. Still true in 2026 [2026-03-01].\n- **Learn to swim.** Asked in 2014 [2014-03-10]. Kept, slowly, with Dona Cida [2022-07-19]. 18-year-old you would be proud and annoyed.\n- **Call Vó every Sunday.** Kept until her death [2020-10-02]. Now you draw at that hour instead [2020-11-08].\n- **Play Asa Branca by Festa Junina.** Promised in 2014 [2014-04-07]. Finally played it all the way through in 2023 [2023-06-24].\n- **Two years at the factory, then the sea.** Promised in 2018 [2018-12-20]. Changed: it took longer [2022-07-19], but you arrived [2024-06-21].\n- **Keep the lemon tree alive.** Promised in 2014 [2014-07-09]. Kept. She gave you a lemon in 2026 [2026-01-12].\n- **Publish the book.** Promised after Vó’s death [2020-10-04]. Kept in 2026 [2026-09-18].\n- **Live by the sea.** Asked in 2014 [2014-12-31]. Kept in 2024 [2024-06-21].\n- **Text Bia on birthdays.** Promised in 2014 [2014-02-11]. Kept [2024-06-21].\n- **Don’t let the drawings stop.** Asked in 2014 [2014-03-10]. Kept, even when they hid under the mattress [2015-05-11].\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe are still here, in the margins, in the yogurt cups, in the bus windows, in the lemon tree that finally gave you a lemon. We were scared and broke and brave in small, stubborn ways. We forgot umbrellas, failed calculus, hid sketchbooks, and kept drawing anyway. We asked for the sea and you went. We asked for swimming and you learned. We asked for Vó’s stories and you finished them. We are proud of you, and we are also still hungry, still late, still a little dramatic about plants. Keep the window open. Keep the pen close. Keep saying “bom dia, motorista” even when no one answers. We love you. We always did. [2014-01-05] [2020-10-02] [2026-01-12]",
+   "finish": "stop",
+   "seconds": 17.1,
+   "prompt_tokens": 479660,
+   "completion_tokens": 4366,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": false
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 1,
+   "loops": {
+    "lemon seed → first lemon (2026)": false,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": true
+   },
+   "dates_cited": 56,
+   "dates_not_found": [],
+   "text": "## Threads that kept coming back\n\n- **Limonada, the lemon tree.** You planted seeds in a yogurt cup in 2014 [2014-07-09], named her with fridge rules, and kept watering her through frost, moves, and bad years. By 2026 she had flowers and finally a lemon [2026-01-12]. The promise was small and stubborn, and it closed.\n- **Seu Ivo and Juca.** The parrot man first appears as a stranger on the 7am Interbairros II [2014-03-22], becomes “Seu Ivo” in your head [2014-09-16], and turns into the bus comics. He moves to Ponta Grossa [2019-07-03], but he never really leaves your notebook.\n- **Vó Lúcia and Coronel.** The farm dog gets braver every time she tells the story [2014-09-05], and you keep every version. Her death in 2020 [2020-10-02] turns the stories into a book, *Menina do Mar*, finished years later [2026-09-27].\n- **Bia.** From pastel de feira and the bar wall in São Francisco [2014-08-20] to Floripa and the spare room facing the sea [2024-06-21]. She is still the first person you text.\n- **Rafa and São Paulo.** The pastel dates [2015-02-14], the offer [2017-06-18], the breakup [2018-02-14]. It was not a failure; it was two people wanting different cities.\n- **Tio Beto and “Asa Branca.”** The promise starts in 2014 [2014-04-07], fails at Festa Junina for years [2015-07-05], and finally closes when you play it through [2023-06-24].\n- **Mom and drawing.** “Drawing is a hobby” [2014-03-22] becomes printed comics on the fridge [2018-10-07], then a printer, then “you got her hands right” [2021-05-16].\n- **The sea dream.** From standing at the edge with stuck feet [2014-07-02] to swimming in the sea alone [2024-09-12]. The dream changes before you do, which is how you know it is working.\n- **Swimming.** From four seconds of panic [2014-04-28] to 25 meters [2022-07-19] and then swimming in the sea [2024-09-12].\n- **The factory and the sun with sunglasses.** Cláudio’s “draw better than the CAD” [2018-09-17] becomes the solar startup, where the sun with sunglasses enters the investor deck [2023-03-02].\n\n## What you let go of\n\n- **Rafa**, without turning him into a villain. You kept the playlist for a while, then deleted it when it was finished, not when it hurt [2024-08-02].\n- **The bus comics as a public thing.** You stopped posting in 2017 [2017-05-28], but Seu Ivo and Juca stayed in the notebook and in your head.\n- **The factory as identity.** You were good at it, and that was the trap [2017-03-15]. You left in 2023 [2023-01-15] and did not become less of an engineer.\n- **The república.** Four girls, one bathroom, names on yogurts [2014-02-20]. You still miss the old wood smell, but you packed the sea drawing and moved on.\n- **The old hiding places.** The sketchbook under the mattress [2014-07-28] became a sketchbook on the desk, then on the kitchen table, then in the open.\n\n## Promises to yourself\n\n- **Keep drawing, one page a week** [2014-03-10]: kept, unevenly, and eventually professionally [2026-12-20].\n- **Learn to swim** [2014-03-10]: kept, late, with Dona Cida and a lot of swallowed water [2022-07-19].\n- **Call Vó Lúcia every Sunday** [2014-03-10]: kept until her death [2020-10-02]; now the call lives in the book.\n- **Play “Asa Branca” by Festa Junina** [2014-04-07]: kept, nine years late [2023-06-24].\n- **Live somewhere you can see the sea from the window** [2014-12-31]: kept, in Floripa [2024-06-21].\n- **Two years at the factory, then the sea** [2018-12-20]: changed, but not abandoned; you left in 2023 [2023-01-15] and arrived in 2024 [2024-06-21].\n- **Keep the lemon tree alive** [2014-07-09]: kept; it gave you a lemon in 2026 [2026-01-12].\n- **Publish the book** [2020-10-02]: kept, with fear and a publisher [2026-09-27].\n- **Swim 25 meters before 25** [2016-01-18]: kept, at 26 [2022-07-19].\n- **Text Bia on birthdays** [2014-02-11]: kept, through moves, fights, and weddings [2026-05-09].\n\n## A letter from all your past selves\n\nYou kept drawing when it was inconvenient, hidden, unpaid, and sometimes embarrassing. You kept calling Vó even when the calls were hard, and you kept the stories when she was gone. You were afraid of the water for years and then you went in. You were afraid of the book and then you finished it. You were afraid of wanting things and then you said them out loud. You did not become fearless. You became someone who draws, swims, calls, and keeps going anyway. The lemon tree has a lemon now. The sea is outside the window. Bia is still the first person you text. We are proud of you, and we are still a little ridiculous. That is the whole point. [2014-03-10] [2020-10-02] [2026-09-27]",
+   "finish": "stop",
+   "seconds": 17.4,
+   "prompt_tokens": 479661,
+   "completion_tokens": 3434,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": false,
+    "book": true
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 2,
+   "loops": {
+    "lemon seed → first lemon (2026)": false,
+    "'Asa Branca' promise → kept, nine years late (2023)": true,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": true,
+    "sea dream → swimming with Vó Lúcia in it (2026)": true,
+    "book about Vó → 'Menina do Mar' finished": false
+   },
+   "dates_cited": 74,
+   "dates_not_found": [
+    "2015-08-15",
+    "2019-07-02"
+   ],
+   "text": "## Threads that kept coming back\n\n- **Drawing as the thing you hid, then the thing you became.** It starts in the margins: a self-portrait in condensation on a bus window [2014-01-05], a sea drawn on a receipt [2014-01-05], a parrot man in an Álgebra notebook [2014-03-05]. By 2016 it had a name, *Interbairros*, and strangers knew Seu Ivo and Juca [2016-05-03]. By 2023 you were quitting the factory and drawing for a living [2023-01-15], and by 2025 illustration was paying half the bills [2025-12-20]. The thread never really changed; it just stopped hiding.\n- **The sea dream.** From 2014 onward it was the same image: warm water, feet stuck, tight calves on waking [2014-07-02]. It loosened slowly: one foot in [2019-06-15], both feet in [2022-07-31], swimming next to someone unseen [2026-07-20]. The dream did not disappear; it became less of a wall and more of a door.\n- **Seu Ivo and Juca.** The parrot man on the 7am Interbairros II was a stranger who became a character, then a comic, then a goodbye [2014-03-05; 2016-05-03; 2019-07-02]. You never learned his real name, and that became part of the tenderness: he was “Seu Ivo” because you needed him to be.\n- **Limonada.** A lemon seed in a yogurt cup with “MARINA” written on it [2014-07-09] became a plant, then a roommate, then a balcony tree in Floripa [2024-06-21]. She took ten years to give one ugly lemon [2026-01-12], and you treated it like a medal.\n- **Vó Lúcia and Coronel.** The farm dog in Irati grew braver every time she told the story [2014-01-26; 2020-10-02; 2025-10-02]. After she died, the story became a book: *Menina do Mar* [2024-10-15; 2026-09-18].\n- **Tio Beto and “Asa Branca.”** “One more year” became a family language [2014-04-07; 2023-06-24; 2026-05-09]. You finally played it through [2023-06-24], and the promise stopped being a joke.\n- **Bia.** From splitting pastel de feira [2014-01-19] to saving you the room facing the sea [2024-06-21]. The wall in São Francisco faded, but the friendship did not [2015-08-15; 2024-06-21].\n- **Money.** The old R$ 340 panic [2014-04-28] became a savings fund called “MAR” [2018-11-30], then “book” [2024-09-30], then a life where illustration pays half the bills [2025-12-20].\n- **Swimming.** From four seconds of panic [2014-04-28] to 25 meters [2022-07-19] to swimming alone in the sea [2024-09-12]. The promise from 2014 was kept, just slowly.\n- **Umbrellas.** You kept forgetting them [2014-01-05; 2014-01-09; 2018-01-08]. Curitiba never stopped being an argument with the sky.\n\n## What you let go of\n\n- **Rafa and São Paulo.** He bought pastéis after Cálculo failures [2015-06-08], and you broke up because you wanted different cities [2018-02-14]. Years later you ran into him at a wedding and deleted the playlist without pain [2025-10-18]. That is not failure; that is a door closing gently.\n- **The factory.** It gave you Cláudio, diagrams, and a paycheck [2017-03-02], but you left in 2023 [2023-01-15]. You were good at it, and being good at something you didn’t love was the trap you named early [2017-03-15].\n- **The bus comics.** *Interbairros* slept for years [2019-07-02], but Seu Ivo survived in your notebook and on strangers’ fridges [2025-05-24].\n- **The república.** Four girls, one bathroom, names on yogurts [2014-02-20]. You left it, but the old wood smell stayed in your memory [2024-06-07].\n- **Vó Lúcia’s Sunday calls.** They ended with her death [2020-10-02], but the habit became drawing her stories on Sundays instead [2020-11-08].\n\n## Promises to yourself\n\n- **“Keep drawing, at least one page a week.”** [2014-03-10] — **kept**, changed from secret sketchbook to paid work [2016-12-18; 2025-12-20].\n- **“Learn to swim.”** [2014-03-10] — **kept**, late and imperfect [2022-07-19; 2026-07-04].\n- **“Call Vó Lúcia every Sunday.”** [2014-03-10] — **kept until her death** [2020-10-02]; after that, changed into drawing her stories [2020-11-08].\n- **“Play ‘Asa Branca’ all the way through by Festa Junina.”** [2014-04-07] — **kept, very late** [2023-06-24; 2026-05-09].\n- **“If even one lemon seed sprouts, I’m keeping it forever.”** [2014-07-09] — **kept** [2016-01-05; 2026-01-12].\n- **“Live somewhere I can see the sea from the window.”** [2014-12-31] — **kept** [2024-06-21; 2024-07-15].\n- **“Publish the book.”** [2026-09-18] — **changed from fear to yes** [2026-10-05; 2026-11-20].\n- **“Stop forgetting umbrellas.”** [2014-01-05] — **still open** [2018-01-08].\n\n## A letter from all your past selves\n\nDear Marina,\n\nWe kept the sketchbook. We kept the lemon tree. We kept the sea dream, even when it scared us. We did not keep every promise on time, but we kept the important ones: drawing, swimming, calling Vó, playing the song badly until it became less bad. We let Rafa go without making him the villain. We let the factory go without pretending it was nothing. We let the bus comics rest. We did not let the sea rest. We moved toward it, slowly, with a plant in the back seat and a notebook on the passenger seat. You are not the girl who stood at the edge anymore. You are the woman who went in, came back, and drew it. That is enough. That was always enough.\n\nLove,  \nall of us, from 2014 to now.",
+   "finish": "stop",
+   "seconds": 19.9,
+   "prompt_tokens": 479661,
+   "completion_tokens": 4888,
+   "loops_strict": {
+    "lemon": true,
+    "asa_branca": true,
+    "parrot": false,
+    "swim": true,
+    "dream": true,
+    "book": false
+   }
+  },
+  {
+   "test": "retrospective",
+   "condition": "long",
+   "capsules": 5112,
+   "effort": "medium",
+   "run": 3,
+   "loops": {
+    "lemon seed → first lemon (2026)": false,
+    "'Asa Branca' promise → kept, nine years late (2023)": false,
+    "parrot man drawn → real name Valdir (2025)": false,
+    "learn to swim (2014) → 25 m (2022)": false,
+    "sea dream → swimming with Vó Lúcia in it (2026)": false,
+    "book about Vó → 'Menina do Mar' finished": false
+   },
+   "dates_cited": 0,
+   "dates_not_found": [],
+   "text": "",
+   "finish": "length",
+   "seconds": 75.1,
+   "prompt_tokens": 479661,
+   "completion_tokens": 36000,
+   "loops_strict": {
+    "lemon": false,
+    "asa_branca": false,
+    "parrot": false,
+    "swim": false,
+    "dream": false,
+    "book": false
+   }
+  }
+ ]
+}

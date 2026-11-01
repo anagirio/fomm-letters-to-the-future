@@ -11,6 +11,7 @@ import argparse
 import json
 import re
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import beam
@@ -48,6 +49,7 @@ def skeleton():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--per-year", type=int, default=40)
+    ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--out", default=str(HERE / "marina_long.json"))
     args = ap.parse_args()
 
@@ -58,27 +60,35 @@ def main():
     base = skeleton()
     text = "\n\n".join(f'[{c["written"]} → {c["opens"]}, to {c["to"]}] {c["text"]}' for c in base)
     taken = {c["written"] for c in base}
-    generated = []
 
-    for year in range(2014, 2027):
-        count = 0
+    def one_year(year):
+        ok = []
         for start in range(0, args.per_year, 40):  # batches keep each answer under max_tokens
-            raw = beam.complete(
-                [{"role": "user", "content": PROMPT.format(n=min(40, args.per_year - start), year=year, skeleton=text)}],
-                "generator", max_tokens=12000, temperature=0.9,
-            )
+            raw = ""
+            for attempt in range(3):  # a long batch occasionally fails or comes back empty
+                try:
+                    raw = beam.complete(
+                        [{"role": "user", "content": PROMPT.format(n=min(40, args.per_year - start), year=year,
+                                                                   skeleton=text)}],
+                        "generator", max_tokens=12000, temperature=0.9, effort="low",
+                    )
+                    break
+                except Exception as e:
+                    print(f"{year}: retry after {type(e).__name__}", flush=True)
             match = re.search(r"\[.*\]", raw, re.S)
             try:
                 caps = json.loads(match.group(0)) if match else []
             except json.JSONDecodeError:
                 caps = []
-            ok = [c for c in caps
-                  if isinstance(c, dict) and c.get("text") and str(c.get("written", "")).startswith(str(year))
-                  and c["written"] not in taken]
-            taken.update(c["written"] for c in ok)
-            generated += ok
-            count += len(ok)
-        print(f"{year}: {count} capsules")
+            ok += [c for c in caps
+                   if isinstance(c, dict) and c.get("text") and str(c.get("written", "")).startswith(str(year))]
+        print(f"{year}: {len(ok)} capsules", flush=True)
+        return ok
+
+    generated = []
+    with ThreadPoolExecutor(args.workers) as pool:  # one year per worker
+        for caps in pool.map(one_year, range(2014, 2027)):
+            generated += [c for c in caps if c["written"] not in taken]  # skeleton days stay hand-written
 
     life = sorted(base + generated, key=lambda c: c["written"])
     chars = sum(len(c["text"]) for c in life)
@@ -87,7 +97,7 @@ def main():
                  f"{beam.MODEL}. Marina is fictional.",
         "capsules": life,
     }, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"Saved {len(life)} capsules, about {chars // 4:,} tokens, to {args.out}")
+    print(f"Saved {len(life)} capsules, about {chars // 3:,} tokens, to {args.out}")
 
 
 if __name__ == "__main__":

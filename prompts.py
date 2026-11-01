@@ -38,7 +38,8 @@ based ONLY on what later capsules say. If later capsules don't say, mark it "sti
 ## A letter from all your past selves
 A short letter (max 200 words) written as if every past version of them wrote it together.
 
-Always cite capsules by date in brackets, e.g. [2016-05-03]. Never invent events that are not in the capsules.
+Always cite capsules by date in brackets, e.g. [2016-05-03], at most three dates per point: pick the ones that
+show the change. Never invent events that are not in the capsules.
 Be honest and kind, not saccharine. Answer in the language most of the capsules are written in."""
 
 GENTLE_OPENING = """FOMM delivers time capsules years after they were written. Life may have changed a lot in between:

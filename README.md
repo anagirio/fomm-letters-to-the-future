@@ -29,15 +29,58 @@ This Space is the part of FOMM that only a model like **Beam** makes possible. B
 | **2 · A life in capsules** | Reads **every capsule a person wrote over the years in a single pass** and writes a retrospective: recurring threads, what they let go of, and which promises to their future self they kept, broke or left open, all cited by date. | Beam's **1M-token context**. A heavy user of FOMM writes hundreds of thousands of tokens across a decade. No chunking or RAG: the whole life is in the context, so Beam can connect a promise from 2014 to the capsule that kept it in 2022. |
 | **3 · Gentle opening** | Before a capsule written years ago is delivered, Beam judges whether it could hurt now (a grandparent who died, an ex-partner) and writes a short note that prepares the recipient without spoiling it. Returns structured JSON. | Time capsules are uniquely risky: the author could not know the future. This is a real safety feature for a real product. |
 
+![Tab 3: Beam flags a capsule to a grandmother who has since died and writes a gentle note](assets/gentle-opening.jpg)
+
+![Tab 2: Beam reads 5,112 capsules (about 480k tokens) in one request and connects details planted years apart](assets/retrospective-long-life.jpg)
+
 Try tab 2 with the built-in sample life of **Marina** (a fictional person, synthetic data written for this demo):
 
 - **74 hand-written capsules, 2014–2026.** Small details are planted years apart on purpose: a lemon seed
   planted in a yogurt cup in 2016 gives its first lemon in 2026; a promise to learn "Asa Branca" on the guitar
   is kept nine years late; the old man with a parrot she drew on the bus in 2014 turns out, in 2025, to have a
   real name. Would you notice them all? Beam has to.
-- **Long life, expanded with Beam.** [`make_long_life.py`](make_long_life.py) uses Beam to grow the hand-written
-  skeleton into hundreds of everyday capsules around it, without contradicting it. That makes a real
-  long-context test: the planted details are now needles in a much bigger haystack.
+- **Long life, expanded with Beam: 5,112 capsules, about 480k tokens.** [`make_long_life.py`](make_long_life.py)
+  uses Beam to grow the hand-written skeleton into thousands of everyday capsules around it. The planted
+  details become needles in a much bigger haystack. The app reads all of it in a single request.
+
+## Measured: can Beam find the planted details in a 480k-token life?
+
+[`needle_test.py`](needle_test.py) runs two tests, both **graded by code, no AI judge**. Every answer, the full
+retrospectives and token counts are in [`results/needles.json`](results/needles.json).
+
+**1. Questions.** 16 short questions whose answers are only in the hand-written capsules, many of them only by
+connecting capsules years apart ("What was the parrot man's real name?" is answered 11 years after she drew him).
+
+| Life | Prompt tokens | Effort | Correct (3 runs) | Time |
+|---|---|---|---|---|
+| no capsules (control) | 470 | low | 0/16 | 3 s |
+| 74 hand-written capsules | 7.8k | low | 16/16 · 16/16 · 16/16 | 4 s |
+| 5,112 capsules | **480k** | low | **15/16 · 15/16 · 14/16** | 18 s |
+| 5,112 capsules | 480k | medium | 13/16 · 15/16 · 13/16 | 28 s |
+
+**Every wrong answer traces back to the haystack, not to Beam's reading.** The filler that Beam itself generated
+contradicts the skeleton in places despite the instructions: it repeats the failed driving test several times
+(so "how many driving tests?" becomes 9 instead of 3), plants the lemon seeds in 2014–2015 instead of 2016, and
+writes more than one "first lemon". That is a second finding: as a generator, Beam drifts from the facts it is
+told to keep.
+
+**2. Retrospective, no hints.** The app's own tab-2 prompt, which doesn't say what to look for. We check which of
+6 planted loops it closes on its own, and whether each date it cites exists.
+
+| Life | Effort | Loops closed | Cited dates that don't exist | Empty answers |
+|---|---|---|---|---|
+| 74 capsules (7.8k tokens) | medium | 5/6 · 4/6 · 4/6 | 0 of 223 | 0 of 3 |
+| 5,112 capsules (480k tokens) | low | 6/6 · 4/6 · 3/6 · 4/6 · 3/6 | 4 of 375 (1%) | 0 of 5 |
+| 5,112 capsules (480k tokens) | medium | 3/6 · 3/6 · empty | 2 of 130 | **1 of 3** |
+
+- The big loops (swimming, "Asa Branca", the book) are found almost every time; the subtle ones (the parrot
+  man's real name, the dream where she swims with her grandmother) are missed more often, even in the short life.
+- **The budget trap on long inputs.** At 480k tokens, `medium` effort sometimes thinks until the token limit and
+  returns nothing (in an earlier run with a smaller budget, 2 of 3 came back empty and the third degenerated into a
+  list of 1,400 dates). `low` answered 5 of 5, in 15 s instead of 37 s. So the app switches to `low`, doubles the
+  reasoning budget and retries once for lives over ~100k tokens.
+- The first version of the loop grader also required exact dates; the filler moves some dates, so loops are now
+  checked by how they end. Both gradings are saved in the JSON.
 
 ## How Beam is used
 
@@ -49,8 +92,12 @@ Try tab 2 with the built-in sample life of **Marina** (a fictional person, synth
 - Reasoning: Beam thinks before it answers, and the thinking counts against the token limit. Each job sets
   `reasoning_effort` (`low` for the interview, so questions come back fast; `medium` for the rest) and gets extra
   room for reasoning. At the default effort, reading a whole life could use up the entire budget thinking.
+- Multi-turn: Beam's API asks for the previous turns' `reasoning_content`. The interviewer sends the whole
+  interview as one transcript in a single user message instead, so every call is stateless.
 - Long context: capsules are sent as `<capsule n written opens to>` blocks, sorted by date; the demo accepts up to
-  about 600k tokens per request.
+  about 670k tokens per request (measured: about 3 characters per token for this mix of English and Portuguese).
+- Reasoning effort by input size: `medium` for a normal life, `low` with double the reasoning budget and one retry
+  for a long one (see the measurements above).
 - Structured output: the gentle-opening check asks for strict JSON (`sensitivity`, `topics`, `why`, `opening_note`)
   and the UI renders it as a badge and a sealed-envelope preview.
 - Multilingual: users can write in any language (FOMM's users write in Portuguese); Beam answers in the user's language.
@@ -96,7 +143,10 @@ app.py              Gradio UI and the three features
 beam.py             Beam client, streaming, limits, demo mode
 prompts.py          System prompts
 style.css           FOMM look (dark space, stars, Earth)
-make_long_life.py   Uses Beam to expand the sample life into hundreds of capsules
+make_long_life.py   Uses Beam to expand the sample life into thousands of capsules
+needle_test.py      Measures whether Beam finds the planted details (graded by code)
+results/            Every answer and retrospective from needle_test.py
+assets/             Screenshots
 samples/            Synthetic life of Marina (hand-written + Beam-expanded) and sensitive examples
 ```
 

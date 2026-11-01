@@ -64,7 +64,7 @@ class EmptyAnswer(Exception):
 
 
 def stream(messages, session: str, max_tokens: int = 1200, temperature: float = 0.7, demo_text: str = "",
-           show_thinking: bool = True, effort: str = "medium"):
+           show_thinking: bool = True, effort: str = "medium", reasoning: int = REASONING_BUDGET):
     """Yield the growing answer. Raises LimitReached before calling Beam."""
     _spend(session)
     if demo_mode():
@@ -81,7 +81,7 @@ def stream(messages, session: str, max_tokens: int = 1200, temperature: float = 
     for chunk in _client.chat.completions.create(
         model=MODEL,
         messages=messages,
-        max_tokens=max_tokens + REASONING_BUDGET,
+        max_tokens=max_tokens + reasoning,
         temperature=temperature,
         stream=True,
         # Without a cap Beam can spend the whole budget thinking about a long life and never answer.
