@@ -94,6 +94,57 @@ told to keep.
 - The first version of the loop grader also required exact dates; the filler moves some dates, so loops are now
   checked by how they end. Both gradings are saved in the JSON.
 
+## Is reading the whole life worth it? Whole life vs RAG, and context length
+
+[`context_test.py`](context_test.py) asks the obvious follow-up questions, with the same questions, loops and
+grading (by code). Raw results: [`results/context.json`](results/context.json).
+
+**RAG ties on direct questions.** RAG retrieves the capsules that look most like each question (dense:
+`multilingual-e5-large`; sparse: BM25) and asks Beam one question at a time, same prompt, `low` effort.
+
+| How Beam sees the life | Prompt tokens | 16 questions, 3 runs |
+|---|---|---|
+| **whole life, one request** | 480k (once) | 15 · 15 · 14 |
+| RAG, BM25 top-50 | ~4.8k per question | 15 · 15 · 15 |
+| RAG, dense top-100 | ~9.5k per question | 15 · 14 · 15 |
+| RAG, dense top-20 | ~2k per question | 11 · 11 · 11 |
+
+A direct question has words to search with, so good retrieval finds the evidence; with only 20 capsules it misses
+the parrot man's name and age and the first lemon.
+
+**RAG fails at what FOMM is for.** A retrospective has no question: the point is to find what came back years
+later without being told. RAG has to guess a query ("promises to my future self, things that came back years
+later, recurring people, objects, songs, plants and dreams…"). Same retrospective prompt, same loop grader:
+
+| Planted loop | RAG, 12 runs (top-100 / top-300, dense / BM25) | Whole life, 5 runs |
+|---|---|---|
+| lemon seed (2016) → first lemon (2026) | **0** | 3 |
+| parrot man drawn (2014) → real name Valdir (2025) | **0** | 2 |
+| book about Vó → *Menina do Mar* finished | **0** | 4 |
+| "Asa Branca" promise → kept in 2023 | 11 | 5 |
+| learn to swim → 25 m | 6 | 5 |
+| sea dream → swimming with Vó in it | 5 | 1 |
+| **loops per run** | **1–2 of 6** | **3–6 of 6** |
+
+The three most subtle loops never appear with RAG, even with 300 capsules (~29k tokens): the capsules that close
+them don't look like any query you would write in advance. That is the case for long context.
+
+**Context length: no drop until ~120k, then the haystack's contradictions show.** The 74 hand-written capsules
+plus a growing random sample of the filler (each life contains the smaller ones):
+
+| Capsules | Prompt tokens | `low`, 3 runs | `medium`, 3 runs | Of the 13 clean questions |
+|---|---|---|---|---|
+| 314 | 30k | 16 · 16 · 16 | 16 · 16 · 16 | all correct |
+| 634 | 59k | 16 · 16 · 16 | 16 · 16 · 16 | all correct |
+| 1,274 | 119k | 15 · 16 · 15 | 15 · 15 · 15 | all correct |
+| 2,554 | 239k | empty · 13 · 15 | 15 · 15 · 15 | 11–13 |
+| 5,112 | 480k | 15 · 15 · 14 | 13 · 15 · 13 | 12–13 (from `needle_test.py`) |
+
+The one question that keeps failing is "how many times did Marina take the driving test?", and the wrong answer
+grows with the filler: 4 at 119k, 5–6 at 239k, 9 at 480k. Capsules about the driving test go from 4 (all
+hand-written) to 14, 30 and 52 as filler is added: Beam is counting the extra tests the filler invented, not losing
+track. One `low` run at 239k thought for 33,500 tokens and returned nothing: the budget trap shows up at `low` too.
+
 ## How Beam is used
 
 - Model: [`reflection/Beam-1.0-501B-A23B`](https://huggingface.co/reflection/Beam-1.0-501B-A23B), called through
@@ -157,7 +208,8 @@ prompts.py          System prompts
 style.css           FOMM look (dark space, stars, Earth)
 make_long_life.py   Uses Beam to expand the sample life into thousands of capsules
 needle_test.py      Measures whether Beam finds the planted details (graded by code)
-results/            Every answer and retrospective from needle_test.py
+context_test.py     Whole life vs RAG, and accuracy by context length
+results/            Every answer and retrospective from needle_test.py and context_test.py
 assets/             Screenshots and the demo video
 samples/            Synthetic life of Marina (hand-written + Beam-expanded) and sensitive examples
 ```
