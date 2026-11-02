@@ -1,0 +1,12 @@
+# Render's free plan sleeps after 15 idle minutes and takes ~45 s to wake.
+# Ping it every 10 minutes so judges and visitors see the demo right away.
+name: keep demo awake
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -o /dev/null --max-time 120 -w "%{http_code} in %{time_total}s\n" https://fomm-letters-to-the-future.onrender.com/
