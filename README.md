@@ -14,6 +14,8 @@ tags:
   - build-with-beam
   - time-capsule
   - long-context
+datasets:
+  - anagirio/fomm-marina-life
 ---
 
 # FOMM · fear of missing memories
@@ -52,7 +54,9 @@ Try tab 2 with the built-in sample life of **Marina** (a fictional person, synth
 ## Measured: can Beam find the planted details in a 480k-token life?
 
 [`needle_test.py`](needle_test.py) runs two tests, both **graded by code, no AI judge**. Every answer, the full
-retrospectives and token counts are in [`results/needles.json`](results/needles.json).
+retrospectives and token counts are in [`results/needles.json`](results/needles.json). The whole life, the
+questions with their answers and the results are also a dataset, so you can run the same test on any model:
+**[anagirio/fomm-marina-life](https://huggingface.co/datasets/anagirio/fomm-marina-life)**.
 
 **1. Questions.** 16 short questions whose answers are only in the hand-written capsules, many of them only by
 connecting capsules years apart ("What was the parrot man's real name?" is answered 11 years after she drew him).
